@@ -1,0 +1,9 @@
+header nav ul {
+    display: flex;
+  }
+  
+  header nav ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #232323;
+  }
