@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react"
+import { FC } from "react"
 import { useState } from "react"
 import AddTaskForm from "../components/forms/AddTaskForm"
 import AddBtn from "../components/buttons/AddBtn"

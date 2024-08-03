@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, useRef } from "react"
+import { FC, useEffect, useState, useRef, useCallback } from "react"
 import ITask from "../Interfaces/ITask"
 import Checkbox from "@mui/material/Checkbox"
 import { useFormik } from "formik"
@@ -22,20 +22,20 @@ const TaskModal: FC<ITaskModalProps> = ({ task, closeTaskModal }) => {
 
     const modalRef = useRef<HTMLDivElement>(null);
 
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = useCallback((event: MouseEvent) => {
         const target = event.target as Node;
 
         if (modalRef.current === target){
-            closeTaskModal();
+           closeTaskModal();
         }
-    };
+    }, [closeTaskModal])
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, []);
+    }, [handleClickOutside])
 
     let isOverdue = false
     
@@ -57,7 +57,7 @@ const TaskModal: FC<ITaskModalProps> = ({ task, closeTaskModal }) => {
 
     const formik = useFormik({
         initialValues: {
-          isChecked: false,
+          isChecked: task.status === "completed",
         },
         onSubmit: (values) => {
             dispatch(markAsCompleted(task.id))

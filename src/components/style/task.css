@@ -1,3 +1,15 @@
-.task {
+.task h3 button{
     cursor: pointer;
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    outline: none;
+}
+
+.task.completed {
+    background-color: rgb(113, 113, 113);
+}
+
+.task.completed h3 button {
+    text-decoration: line-through;
 }

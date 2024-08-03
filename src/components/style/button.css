@@ -1,3 +1,11 @@
+button:focus-visible,
+button {
+  border: none;
+  overflow: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .btn {
     border: none;
     outline: none;

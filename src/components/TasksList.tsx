@@ -7,9 +7,15 @@ const TasksList: FC = () => {
     const tasks = useSelector((state: RootState) => state.tasks.tasks)
     return (
         <div className="tasks-list">
-        {tasks.map((task) => (
-            <TaskItem key={task.id} task={task} />
-        ))}
+            {
+                !tasks.length && 
+                <div>
+                    <span>You don't have any tasks.</span>
+                </div>
+            }
+            {tasks.map((task) => (
+                <TaskItem key={task.id} task={task} />
+            ))}
         </div>
     )
 }

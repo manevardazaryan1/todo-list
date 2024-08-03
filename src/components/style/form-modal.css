@@ -9,8 +9,8 @@
     z-index: 3;
     background: #fff;
     width: 100%;
+    flex-direction: column;
 }
-
 
 .form-modal form {
     display: flex;

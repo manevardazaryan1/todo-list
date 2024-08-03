@@ -12,7 +12,6 @@ import "./style/task.css"
 
 interface ITaskListProps {
     task: ITask;
-
 }
 
 const TaskItem: FC<ITaskListProps> = ({ task }) => {
@@ -26,11 +25,11 @@ const TaskItem: FC<ITaskListProps> = ({ task }) => {
         task.status !== "completed" &&
         task.deadline &&
         typeof task.deadline === "string"
-      ) {
+    ) {
         const deadlineDate = new Date(task.deadline)
         isOverdue = (deadlineDate < new Date() && 
                     deadlineDate.toISOString().split("T")[0] !== new Date().toISOString().split("T")[0])
-      }
+    }
 
     useEffect(() => {
         if (isOverdue) {
@@ -40,21 +39,22 @@ const TaskItem: FC<ITaskListProps> = ({ task }) => {
 
     const formik = useFormik({
         initialValues: {
-          isChecked: false,
+          isChecked: task.status === "completed",
         },
         onSubmit: (values) => {
             dispatch(markAsCompleted(task.id))
         }
-      });
-
+    })
 
     return (
         <div >
-            <div className="task">
+            <div className={`task ${task.status}`}>
                 {
                     editForm && <EditTaskForm task={task} closeEditForm={() => setEditForm(false)}/>
                 }
-                <h3 onClick={() => settaskModal(true)}>{task.title}</h3>
+                <h3>
+                    <button onClick={() => settaskModal(true)}>{task.title}</button>
+                </h3>
                 <span>{task.status}</span>
                 {
                     task.deadline && (
@@ -68,10 +68,10 @@ const TaskItem: FC<ITaskListProps> = ({ task }) => {
                     task.status !== "overdue" &&     
                     <form onSubmit={formik.handleSubmit}>
                         <Checkbox
-                            checked={formik.values.isChecked}
+                            checked={formik.values.isChecked && task.status === "completed"}
                             onChange={(event) => {
-                                formik.setFieldValue("isChecked", event.target.checked);
                                 formik.handleSubmit()
+                                formik.setFieldValue("isChecked", event.target.checked);
                             }}
                         />
                 </form>

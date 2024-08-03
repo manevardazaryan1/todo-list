@@ -24,7 +24,7 @@ const tasksSlice = createSlice({
       edit: (state, action: PayloadAction<ITask>) => {
         const index = state.tasks.findIndex((task) => task.id === action.payload.id)
         if (index !== -1) {
-          state.tasks[index] = action.payload
+          state.tasks[index] = {...action.payload, status: "pending"}
         }
       },
 
