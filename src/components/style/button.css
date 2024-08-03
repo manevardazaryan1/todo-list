@@ -1,0 +1,24 @@
+.btn {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 39px;
+    height: 39px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #575a5a;
+    background-color: transparent;
+}
+
+.btn:focus-visible {
+    outline: none;
+    border: none;
+}
+
+.add-btn {
+    background-color: #20dfd9;
+    color: #fff;
+}
