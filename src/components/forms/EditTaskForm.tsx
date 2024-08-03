@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react"
+import { FC, } from "react"
 import { useFormik } from "formik"
 import { useDispatch } from "react-redux"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,50 +7,35 @@ import validationSchema from "../../schema/validationSchema"
 import IFormValues from "../../Interfaces/IFormValues"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
-import { add } from "../../features/slices/ToDoSlice"
+import ITask from "../../Interfaces/ITask"
+import { edit } from "../../features/slices/ToDoSlice"
 import "../style/form-modal.css"
 
-interface AddTaskFormProps {
-    setAddFormModal: (value: boolean) => void;
+interface EditTaskFormProps {
+    task: ITask;
+    closeEditForm: () => void;
 }
   
-const AddTaskForm: FC<AddTaskFormProps> = ({ setAddFormModal }) => {
+const EditTaskForm: FC<EditTaskFormProps> = ({ task, closeEditForm }) => {
     const dispatch = useDispatch();
     const today = new Date().toISOString().split("T")[0]
-    const modalRef = useRef<HTMLDivElement>(null);
-
-    const handleClickOutside = (event: MouseEvent) => {
-        const target = event.target as Node;
-
-        if (modalRef.current === target){
-            setAddFormModal(false);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
-
 
     const formik = useFormik<IFormValues>({
         initialValues: {
-          title: "",
-          description: "",
+          title: task.title,
+          description: task.description || "",
           deadline: today,
         },
         validationSchema,
         onSubmit: (values: IFormValues) => {
-            dispatch(add({...values, status: "pending" }))
-            setAddFormModal(false)
+            dispatch(edit({...values, id: task.id, status: "pending"}))
+            closeEditForm()
         },
     });
 
     return (
-        <div className="task-form-modal form-modal" ref={modalRef}>
-            <button onClick={() => setAddFormModal(false)} className="close-modal"><FontAwesomeIcon icon={faXmark} /></button>
+        <div className="edit-task-modal form-modal">
+            <button onClick={() => closeEditForm()} className="close-modal"><FontAwesomeIcon icon={faXmark} /></button>
             <form onSubmit={formik.handleSubmit}>
                 <TextField
                     id="outlined-basic"
@@ -89,11 +74,11 @@ const AddTaskForm: FC<AddTaskFormProps> = ({ setAddFormModal }) => {
                     }}
                 />
                 <Button type="submit" variant="contained">
-                    Submit
+                    Edit
                 </Button>
             </form>
         </div>
     )
 }
 
-export default AddTaskForm
+export default EditTaskForm

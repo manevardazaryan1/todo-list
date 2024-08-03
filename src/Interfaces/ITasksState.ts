@@ -1,4 +1,4 @@
-import ITask from "./ITask";
+import ITask from "./ITask"
 
 export default interface ITasksState {
     tasks: ITask[];

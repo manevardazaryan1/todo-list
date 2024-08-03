@@ -3,9 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons'; 
 import '../style/button.css'
 
-const EditBtn: FC = () => {
+interface EditBtnProps {
+    onClick: () => void;
+}
+
+const EditBtn: FC<EditBtnProps> = ({ onClick }) => {
     return (
-        <button className="btn edit-btn"><FontAwesomeIcon icon={faPen} /></button>
+        <button className="btn edit-btn" onClick={onClick}><FontAwesomeIcon icon={faPen} /></button>
     )
 }
 

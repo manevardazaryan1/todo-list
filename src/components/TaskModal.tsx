@@ -1,26 +1,43 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useState, useRef } from "react"
 import ITask from "../Interfaces/ITask"
 import Checkbox from "@mui/material/Checkbox"
 import { useFormik } from "formik"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons'; 
 import { useDispatch } from "react-redux"
 import { markAsCompleted, markAsOverdue, del } from "../features/slices/ToDoSlice"
 import EditBtn from "./buttons/EditBtn"
 import EditTaskForm from "./forms/EditTaskForm"
 import DeleteBtn from "./buttons/DeleteBtn"
-import TaskModal from "./TaskModal"
-import "./style/task.css"
+import "./style/task-modal.css"
 
-interface ITaskListProps {
+interface ITaskModalProps {
     task: ITask;
-
+    closeTaskModal: () => void;
 }
 
-const TaskItem: FC<ITaskListProps> = ({ task }) => {
-    const dispatch = useDispatch()
+const TaskModal: FC<ITaskModalProps> = ({ task, closeTaskModal }) => {
+    const dispatch = useDispatch();
     const [editForm, setEditForm] = useState<boolean>(false)
-    const [taskModal, settaskModal] = useState<boolean>(false)
 
-    let isOverdue = false;
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    const handleClickOutside = (event: MouseEvent) => {
+        const target = event.target as Node;
+
+        if (modalRef.current === target){
+            closeTaskModal();
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    let isOverdue = false
     
     if (
         task.status !== "completed" &&
@@ -47,14 +64,15 @@ const TaskItem: FC<ITaskListProps> = ({ task }) => {
         }
       });
 
-
     return (
-        <div >
-            <div className="task">
+        <div className="task-modal" ref={modalRef}>
+            <div className="task-modal-content">
+                <button onClick={() => closeTaskModal()} className="close-modal"><FontAwesomeIcon icon={faXmark} /></button>
                 {
                     editForm && <EditTaskForm task={task} closeEditForm={() => setEditForm(false)}/>
                 }
-                <h3 onClick={() => settaskModal(true)}>{task.title}</h3>
+                <h3>{task.title}</h3>
+                <p>{task.description}</p>
                 <span>{task.status}</span>
                 {
                     task.deadline && (
@@ -70,7 +88,7 @@ const TaskItem: FC<ITaskListProps> = ({ task }) => {
                         <Checkbox
                             checked={formik.values.isChecked}
                             onChange={(event) => {
-                                formik.setFieldValue("isChecked", event.target.checked);
+                                formik.setFieldValue('isChecked', event.target.checked)
                                 formik.handleSubmit()
                             }}
                         />
@@ -81,13 +99,8 @@ const TaskItem: FC<ITaskListProps> = ({ task }) => {
                     <DeleteBtn onClick={() => dispatch(del({id: task.id, from: "tasks"}))} from={"tasks"}/>
                 </div>
             </div>
-            <div >
-                {
-                    taskModal && <TaskModal task={task} closeTaskModal={() => settaskModal(false)}/>
-                }
-            </div>
         </div>
     )
 }
 
-export default TaskItem
+export default TaskModal

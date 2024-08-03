@@ -1,9 +1,15 @@
-import { FC } from 'react';
+import { FC } from "react"
+import { useSelector } from "react-redux"
+import { RootState } from "../features/store/store"
+import TrashTaskItem from "../components/TrashTaskItem"
 
 const Trash: FC = () => {
+    const tasks = useSelector((state: RootState) => state.tasks.trash);
     return (
-        <div className="container">
-            Trash
+        <div className="tasks-list">
+        {tasks.map((task) => (
+            <TrashTaskItem key={task.id} task={task} />
+        ))}
         </div>
     )
 }

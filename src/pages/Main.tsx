@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { useState } from 'react';
-import AddTaskForm from '../components/forms/AddTaskForm';
-import AddBtn from '../components/buttons/AddBtn';
-import TasksList from '../components/TasksList';
+import { FC, useEffect } from "react"
+import { useState } from "react"
+import AddTaskForm from "../components/forms/AddTaskForm"
+import AddBtn from "../components/buttons/AddBtn"
+import TasksList from "../components/TasksList"
 
 const Main: FC = () => {
 

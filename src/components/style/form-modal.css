@@ -1,0 +1,35 @@
+.form-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: 3;
+    background: #fff;
+    width: 100%;
+}
+
+
+.form-modal form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+}
+
+
+.form-modal form div {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.close-modal {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 39px;
+    height: 39px;
+}
