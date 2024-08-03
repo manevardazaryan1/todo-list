@@ -84,6 +84,7 @@ const AddTaskForm: FC<AddTaskFormProps> = ({ setAddFormModal }) => {
                     value={new Date(formik.values.deadline)}
                     onChange={(value: Date | null) => formik.setFieldValue('deadline', value)}
                     format="yyyy-MM-dd"
+                    minDate={new Date()}
                 />
                 </LocalizationProvider>
                 <Button type="submit" variant="contained">Add</Button>
