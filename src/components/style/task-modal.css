@@ -10,4 +10,91 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    background-color: #f1f4ff;
+}
+
+.task-modal .task-card {
+    width: 75%;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.task-modal .task-card .deadline-col {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+    color: #353535;
+}
+
+.task-modal .task-card .task-title {
+    background: #3b52ff;
+    margin: 0 0 20px 0;
+    color: #fff;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 25px;
+}
+
+.task-modal .task-card .card-content {
+    flex-wrap: wrap;
+}
+
+.task-modal .task-card .card-description {
+    width: 100%;
+}
+
+.task-modal .task-card .card-description p {
+    width: 100%;
+    font-size: 19px;
+    color: #353535;
+    word-wrap: break-word;
+}
+
+.card-description-title {
+    margin: 20px 0;
+    font-size: 21px;
+}
+
+.task-modal .card-description,
+.task-modal .deadline-col {
+    padding: 0 20px;
+}
+
+.task-status-col {
+    padding: 0 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .task-modal .task-card {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .task-modal .task-card {
+        width: 90%;
+    }
+
+    .task-modal .task-deadline::before {
+        display: none;
+    }
+
+    .task-deadline {
+        width: unset !important;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .card-description-title,
+    .task-modal .task-card .task-title {
+        font-size: 19px;
+    }
+
+    .task-modal .task-card .card-description p {
+        font-size: 17px;
+    }
 }

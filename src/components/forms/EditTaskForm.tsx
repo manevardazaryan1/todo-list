@@ -21,20 +21,20 @@ interface EditTaskFormProps {
 const EditTaskForm: FC<EditTaskFormProps> = ({ task, closeEditForm }) => {
     const dispatch = useDispatch();
 
-    const modalRef = useRef<HTMLDivElement>(null);
+    const modalRef = useRef<HTMLDivElement>(null)
 
     const handleClickOutside = useCallback((event: MouseEvent) => {
-        const target = event.target as Node;
+        const target = event.target as Node
 
         if (modalRef.current === target){
-           closeEditForm();
+           closeEditForm()
         }
     }, [closeEditForm])
 
     useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutside)
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown", handleClickOutside)
         };
     }, [handleClickOutside])
 
@@ -53,8 +53,11 @@ const EditTaskForm: FC<EditTaskFormProps> = ({ task, closeEditForm }) => {
 
     return (
         <div className="edit-task-modal form-modal" ref={modalRef}>
+            <div className="modal-header">
+                <h4>EDIT</h4>
+                <button onClick={() => closeEditForm()} className="close-modal"><FontAwesomeIcon icon={faXmark} /></button>
+            </div>
             <h3>Edit task</h3>
-            <button onClick={() => closeEditForm()} className="close-modal"><FontAwesomeIcon icon={faXmark} /></button>
             <form onSubmit={formik.handleSubmit}>
                 <TextField
                     id="outlined-basic"
@@ -84,7 +87,7 @@ const EditTaskForm: FC<EditTaskFormProps> = ({ task, closeEditForm }) => {
                 <DatePicker
                     label="Task Deadline"
                     value={new Date(formik.values.deadline)}
-                    onChange={(value: Date | null) => formik.setFieldValue('deadline', value)}
+                    onChange={(value: Date | null) => formik.setFieldValue("deadline", value)}
                     format="yyyy-MM-dd"
                     minDate={new Date()}
                 />

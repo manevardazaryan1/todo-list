@@ -5,8 +5,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    z-index: 3;
+    min-height: 100vh;
+    z-index: 9;
     background: #fff;
     width: 100%;
     flex-direction: column;
@@ -20,6 +20,15 @@
     width: 55%;
 }
 
+.form-modal form button[type="submit"] {
+    transition: box-shadow .5s ease-in-out;
+    width: 50%;
+}
+
+.form-modal form button[type="submit"]:hover {
+    transition: box-shadow .5s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
 
 .form-modal form div {
     width: 100%;
@@ -27,9 +36,46 @@
 }
 
 .close-modal {
+    width: 50px;
+    height: 50px;
+    font-size: 21px;
+    color: #fff;
+    background: #353535;
+}
+
+.modal-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 39px;
-    height: 39px;
+    top: 0;
+    left: 0;
+    background: #f1f4ff;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    height: 50px;
+}
+
+.modal-header {
+    font-size: 19px;
+}
+
+.modal-header h4 {
+    padding: 0 20px;
+}
+
+.form-modal h3 {
+    font-size: 31px;
+    margin: 25px 0;
+    color: #353535;
+}
+
+@media only screen and (max-width: 768px) {
+    .form-modal form {
+        width: 90%;
+    }
+
+    .form-modal form button[type="submit"]{
+        width: 100% !important;
+    }
 }

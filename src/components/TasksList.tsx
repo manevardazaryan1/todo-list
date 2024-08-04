@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../features/store/store"
 import TaskItem from "./TaskItem"
+import './style/tasks.css'
 
 const TasksList: FC = () => {
     const tasks = useSelector((state: RootState) => state.tasks.tasks)
@@ -10,7 +11,7 @@ const TasksList: FC = () => {
             {
                 !tasks.length && 
                 <div>
-                    <span>You don't have any tasks.</span>
+                    <span className="empty">You don't have any tasks.</span>
                 </div>
             }
             {tasks.map((task) => (

@@ -3,8 +3,8 @@ import { useSelector } from "react-redux"
 import { RootState } from "../features/store/store"
 import TaskItem from "../components/TaskItem"
 
-const CompletedTasks: FC = () => {
-    const tasks = useSelector((state: RootState) => state.tasks.tasks).filter(task => task.status === "completed")
+const OverdueTasks: FC = () => {
+    const tasks = useSelector((state: RootState) => state.tasks.tasks).filter(task => task.status === "overdue")
     
     return (
         <div className="container">
@@ -12,7 +12,7 @@ const CompletedTasks: FC = () => {
                 {
                     !tasks.length && 
                     <div>
-                        <span className="empty">You don't have completed tasks.</span>
+                        <span className="empty">You don't have overdue tasks.</span>
                     </div>
                 }
                 {tasks.map((task) => (
@@ -23,4 +23,4 @@ const CompletedTasks: FC = () => {
     )
 }
 
-export default CompletedTasks
+export default OverdueTasks

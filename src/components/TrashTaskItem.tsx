@@ -13,19 +13,32 @@ const TrashTaskItem: FC<ITaskListProps> = ({ task }) => {
     const dispatch = useDispatch()
 
     return (
-        <div className="task">
-            <h3>{task.title}</h3>
-            <span>{task.status}</span>
-            {
-                task.deadline && (
-                    <div>
-                        <span>{task.deadline}</span>
+        <div className="task trash">
+            <div className="task-card">
+                <div className="card-header">
+                    <h3 className="task-title">
+                        {task.title}
+                    </h3>
+                    {
+                        task.deadline && (
+                            <div className="deadline-col">
+                                <span className="task-deadline">{task.deadline}</span>
+                            </div>
+                        )
+                    }
+                </div>
+                <div className="card-content">
+                    <div className="task-status-col">
+
+                        <span className="task-status">{task.status}</span>
                     </div>
-                )
-            }
-            <div >
-                <DeleteBtn onClick={() => dispatch(del({id: task.id, from: "trash"}))} from={"trash"}/>
-                <RestoreBtn onClick={() => dispatch(restore(task.id))}/>
+                    <div className="task-edit-delete-col">
+                        <div className="buttons-box">
+                            <DeleteBtn onClick={() => dispatch(del({id: task.id, from: "trash"}))} from={"trash"}/>
+                            <RestoreBtn onClick={() => dispatch(restore(task.id))}/>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

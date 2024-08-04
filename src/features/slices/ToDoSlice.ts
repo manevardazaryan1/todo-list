@@ -61,12 +61,10 @@ const tasksSlice = createSlice({
 
       restore: (state, action: PayloadAction<number>) => {
         const task = state.trash.find(task => task.id === action.payload)
-        console.log(task)
         if (task) {
           state.trash = state.trash.filter(item => item.id !== action.payload)
           state.tasks.unshift(task)
         }
-        console.log(state.trash)
       },
     },
   })

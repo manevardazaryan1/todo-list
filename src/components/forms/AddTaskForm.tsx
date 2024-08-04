@@ -17,24 +17,23 @@ interface AddTaskFormProps {
 }
 
 const AddTaskForm: FC<AddTaskFormProps> = ({ setAddFormModal }) => {
-    const dispatch = useDispatch();
-    const modalRef = useRef<HTMLDivElement>(null);
+    const dispatch = useDispatch()
+    const modalRef = useRef<HTMLDivElement>(null)
 
     const handleClickOutside = useCallback((event: MouseEvent) => {
-        const target = event.target as Node;
+        const target = event.target as Node
 
         if (modalRef.current === target){
-           setAddFormModal(false);
+           setAddFormModal(false)
         }
     }, [setAddFormModal])
 
     useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutside)
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown", handleClickOutside)
         };
     }, [handleClickOutside])
-
 
     const formik = useFormik<IFormValues>({
         initialValues: {
@@ -47,12 +46,15 @@ const AddTaskForm: FC<AddTaskFormProps> = ({ setAddFormModal }) => {
             dispatch(add({...values, status: "pending", deadline: new Date(values.deadline).toISOString().split("T")[0]}))
             setAddFormModal(false)
         },
-    });
+    })
 
     return (
         <div className="task-form-modal form-modal" ref={modalRef}>
+            <div className="modal-header">
+                <h4>ADD</h4>
+                <button onClick={() => setAddFormModal(false)} className="close-modal"><FontAwesomeIcon icon={faXmark} /></button>
+            </div>
             <h3>Add task</h3>
-            <button onClick={() => setAddFormModal(false)} className="close-modal"><FontAwesomeIcon icon={faXmark} /></button>
             <form onSubmit={formik.handleSubmit}>
                 <TextField
                     id="outlined-basic"
@@ -81,10 +83,11 @@ const AddTaskForm: FC<AddTaskFormProps> = ({ setAddFormModal }) => {
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
                     label="Task Deadline"
-                    value={new Date(formik.values.deadline)}
-                    onChange={(value: Date | null) => formik.setFieldValue('deadline', value)}
+                    value={formik.values.deadline ? new Date(formik.values.deadline) : null}
+                    onChange={(value: Date | null) => formik.setFieldValue("deadline", value)}
                     format="yyyy-MM-dd"
                     minDate={new Date()}
+                    aria-label="Select task deadline"
                 />
                 </LocalizationProvider>
                 <Button type="submit" variant="contained">Add</Button>

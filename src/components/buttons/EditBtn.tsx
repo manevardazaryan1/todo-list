@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen } from '@fortawesome/free-solid-svg-icons'; 
-import '../style/button.css'
+import { FC } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPen } from "@fortawesome/free-solid-svg-icons"
+import "../style/button.css"
 
 interface EditBtnProps {
     onClick: () => void;

@@ -6,16 +6,18 @@ import TrashTaskItem from "../components/TrashTaskItem"
 const Trash: FC = () => {
     const tasks = useSelector((state: RootState) => state.tasks.trash);
     return (
-        <div className="tasks-list">
-            {
-                !tasks.length && 
-                <div>
-                    <span>Empty Trash</span>
-                </div>
-            }
-            {tasks.map((task) => (
-                <TrashTaskItem key={task.id} task={task} />
-            ))}
+        <div className="container">
+            <div className="tasks-list">
+                {
+                    !tasks.length && 
+                    <div>
+                        <span className="empty">Empty Trash</span>
+                    </div>
+                }
+                {tasks.map((task) => (
+                    <TrashTaskItem key={task.id} task={task} />
+                ))}
+            </div>
         </div>
     )
 }

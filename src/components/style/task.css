@@ -1,15 +1,146 @@
-.task h3 button{
-    cursor: pointer;
-    width: 100%;
+.task {
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    border-radius: 4px;
     background-color: #fff;
-    border: none;
-    outline: none;
+    margin-bottom: 25px;
+    transition:  .5s ease-in-out;
+}
+
+.task:hover {
+    transition: box-shadow .5s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .task.completed {
-    background-color: rgb(113, 113, 113);
+    border-left: 5px solid #3b52ff;
 }
 
-.task.completed h3 button {
+.task.overdue .task-status{
+    color: #FF3B52;
+}
+
+.task.overdue {
+    background: #f1f4ff;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
+
+.task-status {
+    text-transform: capitalize;
+}
+
+.task.completed .task-deadline,
+.task.completed h3 {
     text-decoration: line-through;
+}
+
+.task .card-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    background: #f1f3ff70;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.task .card-header h3,
+.task .card-header .task-deadline {
+    font-size: 23px;
+    color: #353535;
+}
+
+.task .card-header svg {
+    font-size: 30px;
+}
+
+.task .card-header svg path{
+    fill: #3b52ff;
+}
+
+.task .card-header h3 {
+    max-width: 500px;
+    width: 500px;
+    overflow: auto;
+}
+
+.task .card-header h3::-webkit-scrollbar {
+    height: 5px;
+}
+  
+.task .card-header h3::-webkit-scrollbar-thumb {
+    background-color: #353535;
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-status-col,
+.buttons-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.trash.task .card-content {
+    padding: 0 20px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .task .card-header h3 {
+        max-width: 300px;
+        width: 300px;  
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .task .card-header {
+        flex-wrap: wrap;
+    }
+
+    .task .card-header h3 {
+        max-width: 100%;
+        width: 85%;  
+    }
+
+    .trash.task .card-header h3 {
+        width: 100% !important;
+    }
+
+    .deadline-col {
+        width: 100%;
+        margin-top: 10px;
+        order: 2;
+    }
+
+    .task .card-header h3,
+    .task-deadline {
+        font-size: 19px !important;
+    }
+
+    .task-deadline {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .task-deadline::before {
+        position: absolute;
+        content: "Deadline";
+        top: 0;
+        left: 0;
+        
+    }
+
+    .card-icon-col {
+        width: 10%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 }

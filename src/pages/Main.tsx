@@ -5,7 +5,6 @@ import AddBtn from "../components/buttons/AddBtn"
 import TasksList from "../components/TasksList"
 
 const Main: FC = () => {
-
     const [addFormModal, setAddFormModal] = useState<boolean>(false)
 
     const toggleForm = (): void => {
@@ -14,11 +13,13 @@ const Main: FC = () => {
 
     return (
         <div className="container">
-            <AddBtn onClick={toggleForm}/>
-            {
-                addFormModal && <AddTaskForm setAddFormModal={setAddFormModal}/>
-            }
-            <TasksList />
+            <div className="main-content">
+                <AddBtn onClick={toggleForm}/>
+                {
+                    addFormModal && <AddTaskForm setAddFormModal={setAddFormModal}/>
+                }
+                <TasksList />
+            </div>
         </div>
     )
 }

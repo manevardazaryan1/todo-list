@@ -13,12 +13,19 @@ button {
     padding: 5px;
     width: 39px;
     height: 39px;
-    border-radius: 3px;
+    border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #575a5a;
     background-color: transparent;
+    transition: box-shadow .5s ease-in-out;
+    border: 1px solid #575a5a;
+}
+
+.btn:hover {
+    transition: box-shadow .5s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .btn:focus-visible {
@@ -27,6 +34,10 @@ button {
 }
 
 .add-btn {
-    background-color: #20dfd9;
+    background-color: #3b52ff;
     color: #fff;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    border: none;
 }

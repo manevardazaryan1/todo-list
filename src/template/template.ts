@@ -8,17 +8,17 @@ const theme = createTheme({
                 disableElevation: true, 
             },
             styleOverrides: {
-            root: {
-                transition: "none",
-                boxShadow: "none",
-                "&:hover": {
-                backgroundColor: "#3f51b5",
-                boxShadow: "none",
+                root: {
+                    transition: "none",
+                    boxShadow: "none",
+                    "&:hover": {
+                    backgroundColor: "#3b52ff",
+                    boxShadow: "none",
+                    },
+                    "&:active": {
+                    boxShadow: "none",
+                    },
                 },
-                "&:active": {
-                boxShadow: "none",
-                },
-            },
             },
         },
         MuiCheckbox: {
@@ -37,10 +37,10 @@ const theme = createTheme({
     },
     palette: {
         primary: {
-            main: "#3f51b5",
+            main: "#3b52ff",
         },
         secondary: {
-            main: "#f44336"
+            main: "#f44336",
         },
     },
   });
