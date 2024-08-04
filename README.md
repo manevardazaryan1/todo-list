@@ -1,6 +1,7 @@
 <h1><a id='top'>TO DO app</a></h1>
 
-A TO DO app is a tool for creating and managing tasks.
+The TO DO app is a tool for creating and managing tasks.
+The app offers a responsive platform for task management.
 
 ![TO DO](src/assets/images/to_do.webp "TO DO app")
 
