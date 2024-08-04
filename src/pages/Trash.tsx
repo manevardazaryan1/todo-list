@@ -11,7 +11,7 @@ const Trash: FC = () => {
                 {
                     !tasks.length && 
                     <div>
-                        <span className="empty">Empty Trash</span>
+                        <span className="empty">Your trash is empty!</span>
                     </div>
                 }
                 {tasks.map((task) => (

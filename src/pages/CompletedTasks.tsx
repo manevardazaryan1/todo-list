@@ -11,8 +11,9 @@ const CompletedTasks: FC = () => {
             <div className="tasks-list">
                 {
                     !tasks.length && 
-                    <div>
-                        <span className="empty">You don't have completed tasks.</span>
+                    <div className="empty">
+                        <span>You haven't completed any tasks yet.</span>
+                        <span>Let's get started!</span>
                     </div>
                 }
                 {tasks.map((task) => (

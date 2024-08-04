@@ -11,8 +11,9 @@ const OverdueTasks: FC = () => {
             <div className="tasks-list">
                 {
                     !tasks.length && 
-                    <div>
-                        <span className="empty">You don't have overdue tasks.</span>
+                    <div className="empty">
+                        <span>You have no overdue tasks!</span>
+                        <span>Great job!</span>
                     </div>
                 }
                 {tasks.map((task) => (

@@ -11,7 +11,10 @@ const TasksList: FC = () => {
             {
                 !tasks.length && 
                 <div>
-                    <span className="empty">You don't have any tasks.</span>
+                    <div className="empty">
+                        <span>Your to-do list is empty.</span>
+                        <span>Let's add something to do!</span>
+                        </div>
                 </div>
             }
             {tasks.map((task) => (
