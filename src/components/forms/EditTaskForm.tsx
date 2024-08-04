@@ -1,7 +1,8 @@
 import { FC, useEffect, useRef, useCallback } from "react"
 import { useFormik } from "formik"
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers"
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
+import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon"
+import { DateTime } from "luxon"
 import { useDispatch } from "react-redux"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
@@ -83,13 +84,14 @@ const EditTaskForm: FC<EditTaskFormProps> = ({ task, closeEditForm }) => {
 
                     helperText={formik.touched.description && formik.errors.description}
                 />
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <LocalizationProvider dateAdapter={AdapterLuxon}>
                 <DatePicker
                     label="Task Deadline"
-                    value={new Date(formik.values.deadline)}
-                    onChange={(value: Date | null) => formik.setFieldValue("deadline", value)}
+                    value={formik.values.deadline ? DateTime.fromJSDate(new Date(formik.values.deadline)) : null}
+                    onChange={(value: DateTime | null) => formik.setFieldValue("deadline", value ? value.toJSDate() : null)}
                     format="yyyy-MM-dd"
-                    minDate={new Date()}
+                    minDate={DateTime.now()}
+                    aria-label="Select task deadline"
                 />
                 </LocalizationProvider>
                 <Button type="submit" variant="contained">
