@@ -68,7 +68,7 @@ const TaskModal: FC<ITaskModalProps> = ({ task, closeTaskModal }) => {
     return (
         <div className="task-modal" ref={modalRef}>
             <div className="modal-header">
-                <h4>ADD</h4>
+                <h4>Task</h4>
                 <button onClick={() => closeTaskModal()} className="close-modal"><FontAwesomeIcon icon={faXmark} /></button>
             </div>
             <div className="task-card">
